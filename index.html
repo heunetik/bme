@@ -1,0 +1,25 @@
+<html>
+<head>
+  <link href="materialize.min.css" rel="stylesheet">
+  <link href="main.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container">
+    <a id="temperature" class="btn"></a>
+    <a id="pressure" class="btn"></a>
+    <a id="humidity" class="btn"></a>
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+
+    socket.on('data', (data) => {
+	document.getElementById("temperature").innerHTML = data.temp + "C";
+	document.getElementById("pressure").innerHTML = data.pressure + " hPa";
+	document.getElementById("humidity").innerHTML = data.humidity + "%";
+	console.log(data);
+    });
+  </script>
+</body>
+</html>
